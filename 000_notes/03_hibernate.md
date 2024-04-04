@@ -36,7 +36,13 @@ JDBC
    It is thread safe object.
    It is a heavy weight object.
 
+        SessionFactory sf = cfg.buildSessionFactory();
+
 3. Session
     Session is light weight.
     To perform any crud operation, we need session object
     it is not thread safe.
+
+       Session session = sf.openSession();
+
+    note: close the session object after using

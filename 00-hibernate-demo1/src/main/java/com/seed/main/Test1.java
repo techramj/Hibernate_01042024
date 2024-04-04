@@ -13,8 +13,6 @@ public class Test1 {
 		Session session = sf.openSession();
 		Transaction transaction = session.beginTransaction();
 		session.save(emp);
-		
-		
 		transaction.commit();
 		session.close();	
 	}

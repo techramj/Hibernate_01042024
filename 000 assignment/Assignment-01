@@ -1,0 +1,35 @@
+# step 1: create maven project
+# step 2: add hibernate dependencies in pom.xml
+# step 3: run the commnad mvn clean install in terminal
+# step 4: add hibernate.cfg.xml file in resources folder
+# step 5: fill the sessionfactory properties.
+    refer example 00-hibernate
+
+# step 6: create the object of session factory
+# step 7: create 3 entities class
+    Employee  emp_01
+        id
+        name  not null
+        salary
+
+    Address    address_01
+        addressId
+        line1
+        line2
+        city  not null
+        pincode
+
+     student  student_01
+        rollNo
+        fname  not null
+        lname
+        mob    unique
+        email
+
+# step 8: add the mapping of above entities in hibernate.cfg.xml
+# step 9: create one class CrudDao
+Structure of the class:
+     refer to CrudDao class in  00-hibernate-demo
+
+
+    
