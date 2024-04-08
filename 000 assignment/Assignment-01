@@ -31,5 +31,7 @@
 Structure of the class:
      refer to CrudDao class in  00-hibernate-demo
 
+# step 10: create two object of each entities and add it to db
 
-    
+
+Main  ---------> service ----------------> dao------ORM--------------> database
