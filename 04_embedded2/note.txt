@@ -1,0 +1,39 @@
+create sequence hibernate_sequence start with 1 increment by  1;
+create sequence seq_emp_03 start with 100 increment by  1;
+
+    
+create table Car (
+       id number(10,0) not null,
+        name varchar2(255 char),
+        primary key (id)
+    );
+
+    
+create table emp_03 (
+       id number(10,0) not null,
+        billing_city varchar2(255 char),
+        billing_pincode varchar2(255 char),
+        mailing_city varchar2(255 char),
+        mailing_pincode varchar2(255 char),
+        name varchar2(255 char),
+        perm_add_city varchar2(255 char),
+        perm_add_pincode varchar2(255 char),
+        salary double precision,
+        primary key (id)
+    );
+    
+    
+ --when we save the emp object
+Query 1: 
+    select
+        seq_emp_03.nextval 
+    from
+        dual;
+
+Query 2: 
+    insert 
+    into
+        emp_03
+        (billing_city, billing_pincode, mailing_city, mailing_pincode, name, perm_add_city, perm_add_pincode, salary, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?);

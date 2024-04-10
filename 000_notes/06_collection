@@ -1,0 +1,146 @@
+                             Collection<I>
+
+ List<I>                   Queue<I>                       Set<I>
+
+ArrayList              PriorityQueue           HashSet                  SortedSet<I>
+LinkedList                                                          
+Vector                                         LinkedHashSet             NavigableSet<I>
+
+                                                                         TreeSet
+
+
+Note: Map has similar structure like Set
+
+
+@Entity
+@Table(name = "emp_04")
+public class Employee {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emp_04")
+	@SequenceGenerator(name ="seq_emp_04", initialValue = 1000, allocationSize = 1 )
+	private Integer id;
+	private String name;
+	private Double salary;
+	
+	@ElementCollection
+	@JoinTable(name="projects_04")
+	private List<String> projects;
+	
+	@ElementCollection
+	@JoinTable(name="skills_04")
+	private Set<String> skills;
+
+}
+
+//generated Query:
+Query 1: create sequence seq_emp_04 start with 1000 increment by  1
+
+Query 2: 
+create table emp_04 (
+     id number(10,0) not null,
+     name varchar2(255 char),
+     salary double precision,
+     primary key (id)
+ );
+
+
+ Query 3:
+ create table projects_04 (
+       Employee_id number(10,0) not null,
+        projects varchar2(255 char)
+ );
+
+
+ Query 4:
+ create table skills_04 (
+       Employee_id number(10,0) not null,
+        skills varchar2(255 char)
+    );
+
+
+Query 5:
+    alter table projects_04 
+    add constraint FKso1igm2x8tojsmve0vj5cf9f2 
+    foreign key (Employee_id) 
+    references emp_04;
+
+Query 6:
+    alter table skills_04 
+    add constraint FKjcilmcgeupdgxdxruoi2opujv 
+    foreign key (Employee_id) 
+    references emp_04;
+
+
+//Adding Employee
+Employee emp = new Employee();
+emp.setName("Jack");
+emp.setSalary(12000.0);
+
+List<String> projects = new ArrayList<String>();
+projects.add("EMS");
+projects.add("Connect Friend");
+
+Set<String> skills  = new HashSet<String>();
+skills.add("Core Java");
+skills.add("WCD");
+skills.add("Hibernate");
+skills.add("SQL");
+
+emp.setProjects(projects);
+emp.setSkills(skills);
+
+Hibernate: select seq_emp_04.nextval from dual
+Hibernate: insert into emp_04 (name, salary, id) values (?, ?, ?)
+Hibernate: insert into projects_04 (Employee_id, projects) values (?, ?)
+Hibernate: insert into projects_04 (Employee_id, projects) values (?, ?)
+Hibernate: insert into skills_04 (Employee_id, skills) values (?, ?)
+Hibernate: insert into skills_04 (Employee_id, skills) values (?, ?)
+Hibernate: insert into skills_04 (Employee_id, skills) values (?, ?)
+Hibernate: insert into skills_04 (Employee_id, skills) values (?, ?);
+
+
+_______________________________________________________________________________________________________________
+@Entity
+@Table(name = "emp_04")
+public class Employee {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_emp_04")
+	@SequenceGenerator(name ="seq_emp_04", initialValue = 1000, allocationSize = 1 )
+	private Integer id;
+	private String name;
+	private Double salary;
+	
+	@ElementCollection
+	@JoinTable(name="projects_04")
+	@Column(name="project")
+	private List<String> projects;
+	
+	@ElementCollection
+	@JoinTable(name="skills_04")
+	private Set<String> skills;
+	
+	@ElementCollection
+	@JoinTable(name="emp_parent_adderss_04")
+	private List<Address> parentAddress;
+}
+
+
+@Embeddable
+public class Address {
+
+	private String city;
+	private String pincode;
+	private String relation;
+}
+
+
+
+Hibernate: create table emp_04 (id number(10,0) not null, name varchar2(255 char), salary double precision, primary key (id))
+Hibernate: create table emp_parent_adderss_04 (Employee_id number(10,0) not null, city varchar2(255 char), pincode varchar2(255 char), relation varchar2(255 char))
+Hibernate: create table projects_04 (Employee_id number(10,0) not null, project varchar2(255 char))
+Hibernate: create table skills_04 (Employee_id number(10,0) not null, skills varchar2(255 char))
+Hibernate: alter table emp_parent_adderss_04 add constraint FKr6io09440hldvhdguu6eux78m foreign key (Employee_id) references emp_04
+Hibernate: alter table projects_04 add constraint FKso1igm2x8tojsmve0vj5cf9f2 foreign key (Employee_id) references emp_04
+Hibernate: alter table skills_04 add constraint FKjcilmcgeupdgxdxruoi2opujv foreign key (Employee_id) references emp_04

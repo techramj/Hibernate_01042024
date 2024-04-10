@@ -1,0 +1,60 @@
+@Table(name = "emp_03")
+public class Employee {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp_03_seq")
+	@SequenceGenerator(name = "emp_03_seq", sequenceName = "seq_emp_03", initialValue = 100, allocationSize = 1)
+	private Integer id;
+	private String name;
+	private Double salary;
+
+	@Embedded
+	@AttributeOverrides(value = {
+			@AttributeOverride(name="city" , column = @Column(name="billing_city")),
+			@AttributeOverride(name="pincode" , column = @Column(name="billing_pincode")),
+	})
+	private Address billingAddress;
+
+    @AttributeOverrides(value = {
+        @AttributeOverride(name="city" , column = @Column(name="mailing_city")),
+        @AttributeOverride(name="pincode" , column = @Column(name="mailing_pincode")),
+    })
+    @Embedded
+    private Address mailingAddress;
+
+    @AttributeOverrides(value = {
+            @AttributeOverride(name="city" , column = @Column(name="perm_add_city")),
+            @AttributeOverride(name="pincode" , column = @Column(name="perm_add_pincode")),
+    })
+    @Embedded
+    private Address permanentAddress;
+
+//..
+
+}
+
+
+
+public class Address {
+
+	private String city;
+	private String pincode;
+}
+
+
+//SQL Query
+Query 1: create sequence seq_emp_03 start with 100 increment by  1
+
+Query 2: 
+create table emp_03 (
+    id number(10,0) not null,
+     billing_city varchar2(255 char),
+     billing_pincode varchar2(255 char),
+     mailing_city varchar2(255 char),
+     mailing_pincode varchar2(255 char),
+     name varchar2(255 char),
+     perm_add_city varchar2(255 char),
+     perm_add_pincode varchar2(255 char),
+     salary double precision,
+     primary key (id)
+ );
