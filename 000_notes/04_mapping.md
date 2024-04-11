@@ -14,6 +14,19 @@
 			@AttributeOverride(name="pincode" , column = @Column(name="perm_add_pincode")),
 	})
 
+9. @Embeddble
+10. @Transient
+11. @UpdateTimestamp  : org.hibernate.annotations.UpdateTimestamp
+12. @CreationTimestamp: org.hibernate.annotations.CreationTimestamp
+
+
+Mapping
+one to One
+  Employee  -> Passport
+
+One to Many/ Many to One
+Many to Many
+
 
 
 Emp
