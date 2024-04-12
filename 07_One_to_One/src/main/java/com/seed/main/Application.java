@@ -14,27 +14,27 @@ public class Application {
 	
 	public static void main(String[] args) {
 		
-		Employee emp = getEmployee(1);
-		displayEmployee(emp);
-		
-		Passport passport = getPassport(1);
-		System.out.println(passport);
+		//addExample();
+		fetchExample();
 	}
 	
-	public static void displayEmployee(Employee emp) {
-		System.out.println("Emp details:");
-		System.out.println("Name: "+emp.getName());
-		System.out.println("Salary: "+emp.getSalary());
-		System.out.println("Passport: "+emp.getPassport().getPassportNumber());
-		System.out.println("_________________________________________\n");
-	}
-	
-	public static void example1() {
+
+	public static void addExample() {
 		Employee emp = new Employee("Sam", 4000.0);
 		Passport p1 = new Passport("AoMP111123", new Date(2034, 10, 12));
 		emp.setPassport(p1);
-		addPassport(p1);
+		
+		
+		//addPassport(p1);
 		addEmployee(emp);
+	}
+	
+	public static void fetchExample() {
+		Employee emp = getEmployee(1);
+		displayEmployee(emp);
+		
+		//Passport passport = getPassport(1);
+		//System.out.println(passport);
 	}
 	
 	
@@ -45,6 +45,15 @@ public class Application {
 		session.save(emp);
 		tx.commit();
 	}
+	
+	public static void displayEmployee(Employee emp) {
+		System.out.println("Emp details:");
+		System.out.println("Name: "+emp.getName());
+		System.out.println("Salary: "+emp.getSalary());
+		System.out.println("Passport: "+emp.getPassport().getPassportNumber());
+		System.out.println("_________________________________________\n");
+	}
+	
 	
 	
 	public static void addPassport(Passport passport) {
@@ -57,12 +66,12 @@ public class Application {
 	
 	public static Employee getEmployee(int id) {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
-		try (Session session = sf.openSession()) {
+		Session session = sf.openSession();
 			Transaction tx = session.beginTransaction();
 			Employee emp = session.get(Employee.class, id);
 			tx.commit();
 			return emp;
-		}
+		
 	}
 	
 	public static Passport getPassport(int passportId) {

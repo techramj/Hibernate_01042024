@@ -9,38 +9,50 @@ import com.seed.entities.Employee;
 import com.seed.util.HibernateUtil;
 
 public class Application {
-	
+
 	public static void main(String[] args) {
-		example2();
-		
-		
+		//insertExample();
+		fetchExample();
+
 	}
-	
-	public static void example2() {
+
+	public static void insertExample() {
+		Employee emp1 = new Employee("Sam", 4000.0);
+		Employee emp2 = new Employee("Jack", 9000.0);
+		Employee emp3 = new Employee("Jessica", 5000.0);
+		
+		Department it = new Department();
+		it.setName("IT");
+		
+		Department hr = new Department();
+		hr.setName("hr");
+
+		//addDept(it);
+		//addDept(hr);
+		
+		emp1.setDepartment(it);
+		emp2.setDepartment(it);
+		emp3.setDepartment(hr);
+		
+		addEmployee(emp1);
+		addEmployee(emp2);
+		addEmployee(emp3);
+
+	}
+
+	public static void fetchExample() {
 		Employee emp = getEmployee(1);
 		displayEmployee(emp);
 	}
-	
+
 	public static void displayEmployee(Employee emp) {
 		System.out.println("Emp details:");
-		System.out.println("Name: "+emp.getName());
-		System.out.println("Salary: "+emp.getSalary());
-		System.out.println("department name: "+emp.getDepartment().getName());
+		System.out.println("Name: " + emp.getName());
+		System.out.println("Salary: " + emp.getSalary());
+		//System.out.println("department name: " + emp.getDepartment().getName());
 		System.out.println("_________________________________________\n");
 	}
-	
-	public static void example1() {
-		Employee emp = new Employee("Sam", 4000.0);
-		Department dept = new Department();
-		dept.setName("IT");
-		
-		addDept(dept);
-		emp.setDepartment(dept);
-		addEmployee(emp);
-	
-	}
-	
-	
+
 	public static void addEmployee(Employee emp) {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
@@ -48,8 +60,7 @@ public class Application {
 		session.save(emp);
 		tx.commit();
 	}
-	
-	
+
 	public static void addDept(Department dept) {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
@@ -57,17 +68,17 @@ public class Application {
 		session.save(dept);
 		tx.commit();
 	}
-	
+
 	public static Employee getEmployee(int id) {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
-		try (Session session = sf.openSession()) {
+		Session session = sf.openSession();
 			Transaction tx = session.beginTransaction();
 			Employee emp = session.get(Employee.class, id);
 			tx.commit();
 			return emp;
-		}
+		
 	}
-	
+
 	public static Department getPassport(int did) {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		try (Session session = sf.openSession()) {

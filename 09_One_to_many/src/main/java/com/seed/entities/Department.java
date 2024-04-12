@@ -15,7 +15,7 @@ public class Department {
 	@Id
 	@Column(name = "did")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dept_id_gen")
-	@SequenceGenerator(name = "dept_id_gen", sequenceName = "seq_dept_09_id", allocationSize = 10, initialValue = 10)
+	@SequenceGenerator(name = "dept_id_gen", sequenceName = "seq_dept_09_id", allocationSize =10, initialValue = 10)
 	private Integer id;
 
 	@Column(name = "dept_nmae", length = 20)

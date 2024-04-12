@@ -1,31 +1,37 @@
 package com.seed.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "emp_05")
+@Table(name = "emp_10")
 public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp_id_gen")
-	@SequenceGenerator(name = "emp_id_gen", sequenceName = "seq_emp_05_id")
+	@SequenceGenerator(name = "emp_id_gen", initialValue = 100, allocationSize = 1)
 	private Integer id;
 	private String name;
 	private Double salary;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="passport_id")
-	private Passport passport;
-
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="emp_project", 
+			   joinColumns = {@JoinColumn(name="eid")}, 
+			   inverseJoinColumns = {@JoinColumn(name="pid")}
+	)
+	private List<Project> projects = new ArrayList<>();
+	
 	public Employee() {
 	}
 
@@ -58,12 +64,15 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	public Passport getPassport() {
-		return passport;
+	public List<Project> getProjects() {
+		return projects;
 	}
 
-	public void setPassport(Passport passport) {
-		this.passport = passport;
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 
+	public void addProject(Project project) {
+		projects.add(project);
+	}
 }
