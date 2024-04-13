@@ -1,6 +1,9 @@
 package com.seed.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -59,8 +62,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public List<Employee> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> employees = new ArrayList<Employee>();
+		try (Session session = sessionFactory.openSession()) {
+			Transaction tx = session.beginTransaction();
+			Query query = session.createQuery("from Employee e");
+			employees = query.getResultList();
+			tx.commit();
+			
+		}
+		return employees;
 	}
 
 }

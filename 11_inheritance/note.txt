@@ -1,0 +1,16 @@
+1. Table per hierarchy
+
+
+         		EMp
+         
+      Salesperson       WageEmployee
+      
+      
+      SalesManger
+      
+      
+ 
+ 2. Table per concrete class
+ 
+ 
+ 3. Table per subclass
