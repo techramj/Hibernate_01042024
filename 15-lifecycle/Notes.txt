@@ -1,0 +1,36 @@
+Lifecycle of hibernate
+
+1. Transient
+   create the object
+
+   persistent -> transient state
+   delete();
+   
+2. persistent state
+   
+   Transient -> Persistent state
+   save();
+   saveOrUpdate();
+   update();
+   persist();
+   
+   direct to persistent state
+   get()
+   load();
+   
+   detached to persistent
+   save();
+   saveOrUpdate();
+   update();
+   
+   
+   
+
+3. detached state
+    persistent to detached
+    detach();
+    clear();
+    close();
+    evict();
+    
+   

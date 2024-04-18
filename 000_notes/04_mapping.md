@@ -59,4 +59,20 @@ Emp
     city
     pincode
 
-id  name  salary city pincode add2_city add2_pincode
+id  name  salary city pincode add2_city add2_pincode.
+
+
+@Table(name="emp")
+Employee
+  id
+  name
+  salary
+
+
+select e from Employee  => HQL
+
+select * from emp; =>nativeSQl
+
+select * from (select * from emp order by 1 desc) where rownum<=5;
+
+HQL   =>   sql
