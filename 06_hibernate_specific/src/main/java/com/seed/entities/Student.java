@@ -1,10 +1,15 @@
 package com.seed.entities;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,13 +22,22 @@ public class Student {
 	@GeneratedValue
 	private Integer rollno;
 	private String name;
-	
+
 	@Transient
 	private String isMarried;
+
+	@Lob
+	private String details;
 	
+	@Lob
+	private String resume;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dob;
+
 	@UpdateTimestamp
 	private LocalDateTime lastUpdate;
-	
+
 	@CreationTimestamp
 	private LocalDateTime lastCreated;
 
@@ -66,5 +80,31 @@ public class Student {
 	public void setLastCreated(LocalDateTime lastCreated) {
 		this.lastCreated = lastCreated;
 	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
+	}
+
+	public String getResume() {
+		return resume;
+	}
+
+	public void setResume(String resume) {
+		this.resume = resume;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
 	
+	
+
 }

@@ -1,0 +1,11 @@
+
+<bean name="emp1" class="com.seed.model.Employee">
+		<property name="id" value="101" />
+		<property name="name" value="Jessica" />
+		<property name="salary" value="8000" />
+</bean>
+
+        Employee emp1 = new Employee();
+		emp1.setId(102);
+		emp1.setName("Sam");
+		emp1.setSalary(5000);

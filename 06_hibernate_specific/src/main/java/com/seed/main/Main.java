@@ -15,6 +15,13 @@ public class Main {
 		stud.setName("Sam");
 		stud.setIsMarried("No");
 		
+		
+		StringBuilder sb = new StringBuilder();
+		for(int i=0;i<=5000;i++) {
+			//s = s + "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"; //incorrect
+			sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
+		}
+		stud.setDetails(sb.toString());
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
 		session.save(stud);

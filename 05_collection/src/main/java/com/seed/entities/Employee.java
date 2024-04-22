@@ -25,7 +25,7 @@ public class Employee {
 	private Double salary;
 	
 	@ElementCollection
-	@JoinTable(name="projects_04")
+	//@JoinTable(name="projects_04")
 	@Column(name="project")
 	private List<String> projects;
 	

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean name="emp1" class="com.seed.model.Employee">
+		<property name="id" value="101" />
+		<property name="name" value="Jessica" />
+		<property name="salary" value="8000" />
+	</bean>
+	
+	<bean name="bike1" class="com.seed.model.Bike">
+		<property name="color" value="Red"/>
+		<property name="name" value="Pulsar" />
+	</bean>
+
+</beans>
