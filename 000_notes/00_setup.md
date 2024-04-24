@@ -17,6 +17,9 @@
     %M2_HOME%\bin
 
 
+## step 5: create the maven project
 
+
+## step 6: add the dependencies
 
 

@@ -9,11 +9,25 @@
 		<property name="id" value="101" />
 		<property name="name" value="Jessica" />
 		<property name="salary" value="8000" />
+		<property name="vehicle" ref="car" />
+	</bean>
+	
+	
+	<bean name="emp2" class="com.seed.model.Employee">
+		<property name="id" value="101" />
+		<property name="name" value="Jessica" />
+		<property name="salary" value="8000" />
+		<property name="vehicle" ref="car" />
 	</bean>
 	
 	<bean name="bike1" class="com.seed.model.Bike">
 		<property name="color" value="Red"/>
 		<property name="name" value="Pulsar" />
+	</bean>
+	
+	<bean name="car" class="com.seed.model.Car">
+		<property name="color" value="Red"/>
+		<property name="name" value="GV" />
 	</bean>
 
 </beans>

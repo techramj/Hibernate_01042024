@@ -14,8 +14,19 @@ public class Test1 {
 		Employee emp1 = (Employee) context.getBean("emp1");
 		System.out.println(emp1);
 		
+		Employee emp2 = (Employee) context.getBean("emp2");
+		System.out.println(emp1);
+		
 		Bike bike = context.getBean("bike1", Bike.class);
-		System.out.println(bike);
+		//System.out.println(bike);
+		
+		System.out.println(emp1 == emp2);
+		System.out.println(emp1.equals(emp2));
+		System.out.println(emp1.equals(bike));
+		System.out.println(emp1.equals(emp1));
+		
+		
+		
 	}
 
 }

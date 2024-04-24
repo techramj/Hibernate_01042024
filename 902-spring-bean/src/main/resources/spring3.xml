@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	
+	<bean name="engine1" class="com.seed.model.Engine" scope="prototype" >
+		<property name="type" value="Four stroke 1200 CC" />
+		<property name="fuelType" value="Petrol" />
+	</bean>
+	
+	<bean name="car" class="com.seed.model.Car" scope="prototype" >
+		<property name="name" value="Skoda" />
+		<property name="color" value="Silver" />
+		<property name="engine" ref="engine1" />
+	</bean>
+
+</beans>

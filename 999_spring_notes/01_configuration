@@ -1,4 +1,6 @@
-
+Two way
+1. xml
+2. class
 <bean name="emp1" class="com.seed.model.Employee">
 		<property name="id" value="101" />
 		<property name="name" value="Jessica" />
@@ -9,3 +11,64 @@
 		emp1.setId(102);
 		emp1.setName("Sam");
 		emp1.setSalary(5000);
+
+
+Employee
+	id : int
+	name:String
+	vehicle: Car/Bike/Jeep
+	address: Address
+
+
+Address
+    city:String
+	picode:String 
+	landMark: landMark
+
+
+LandMark
+    laneno:
+	desc:
+
+IOC vs DI
+
+
+when scope is prototype
+----------------------------
+default constructor of Employee
+default constructor of Employee
+Emp1: Emploee [id=1, name=jack, salary=5000.0]
+Emp2: Emploee [id=1, name=jack, salary=5000.0]
+comparing both object  using == false
+After setting slary to emp1
+Emp1: Emploee [id=1, name=jack, salary=9999.0]
+Emp2: Emploee [id=1, name=jack, salary=5000.0]
+
+
+when scope is singleton
+-----------------------
+default constructor of Employee
+Emp1: Emploee [id=1, name=jack, salary=5000.0]
+Emp2: Emploee [id=1, name=jack, salary=5000.0]
+comparing both object  using == true
+After setting slary to emp1
+Emp1: Emploee [id=1, name=jack, salary=9999.0]
+Emp2: Emploee [id=1, name=jack, salary=9999.0]
+
+
+when scope is not set
+-----------------------
+default constructor of Employee
+Emp1: Emploee [id=1, name=jack, salary=5000.0]
+Emp2: Emploee [id=1, name=jack, salary=5000.0]
+comparing both object  using == true
+After setting slary to emp1
+Emp1: Emploee [id=1, name=jack, salary=9999.0]
+Emp2: Emploee [id=1, name=jack, salary=9999.0]
+
+
+Scope of bean
+Singleton (default)
+prototype
+session 
+application
