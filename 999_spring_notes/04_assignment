@@ -1,0 +1,32 @@
+# assignment 3
+    create Employee bean by using
+    1. xml config
+    2. class config => @Configuration
+    3. @Component + xml config
+    4. @Componenet + class config
+
+
+# assignment 4:
+   com.seed.controller.MyController
+       inject service
+
+            public Employee addEmployee(Employee emp){
+            // service addEMployee
+            }
+
+   com.seed.service.EmployeeService
+    inject EmployeeDao
+
+     public void addEMployee(Employee emp){
+        //dao save method
+     }
+
+
+   com.seed.dao.EmployeeDao
+        public void save(Employee emp){
+            sysout("Employee Added");
+        }
+
+
+  Main class
+    context => bean=> call controller.addEMployee
