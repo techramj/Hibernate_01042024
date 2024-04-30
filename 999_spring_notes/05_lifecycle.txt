@@ -1,0 +1,31 @@
+1. creating of bean /instantiation (contructor will be called....)
+2. set properties
+3. setBeanName
+4. setApplicationContext
+
+
+default constructor of Employee
+EMployee.setId called
+BeanNameAware.setBeanName: emp1
+ApplicationContextAware.setApplicationContext(ApplicationContext) called
+BeanPostProcessor.postProcessBeforeInitialization called Employee  with name: emp1
+InitializingBean.afterPropertiesSet method
+custom init called....
+BeanPostProcessor.postProcessAfterInitialization called
+
+
+Bean ready to used...
+Emploee [id=1, name=jack, salary=5000.0]
+
+
+DisposableBean.destroy() called
+custom destroy
+--------------------
+
+<bean class="com.seed.Car"/> 
+<bean class="com.seed.Car"/> car
+
+
+          @Componenet
+
+@Controller   @Service   @Repository
