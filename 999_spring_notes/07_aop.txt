@@ -1,0 +1,46 @@
+
+
+Using cross cutting concern
+---------------------------------
+class Name: com.seed.service.LoanService
+Entered: LoanService.issueLoan at Fri May 03 20:10:28 IST 2024
+Loan issued to Cust-01
+Exit: LoanService.issueLoan at 2024-05-03T20:10:28.454
+
+
+
+
+class Name: com.seed.service.LoanService
+Loan issued to Cust-01
+
+
+Aspect: eg: Logging, Transaction
+JointPoint: where you can apply
+PointCut: where you have applied
+Advice:
+  before
+  after
+
+
+Weaving: 
+  compile time
+  run time  -> spring
+
+ LoanService                                                LoanServicePrxoy extends LoanSerivce{
+    //pointcut
+    issueLoan(){                                            issueLoan(){
+        sysout("loan Issued");   --------------------->     sysout("before");
+    }                                                       sysout("loan Issued");
+                                                            sysout("after")
+                                                            }
+    payLoan(){
+        sysout("loan cleared");
+    }
+
+
+LoggingAspect
+   before => sysout("before")
+   after => sysout("after")
+
+
+

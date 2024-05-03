@@ -1,0 +1,86 @@
+Model
+  Employee
+  id:number
+  name:String
+  salary:double
+ 
+Emp12
+    id   name      salary
+    1     Jack      5000
+         
+
+
+  spring JDBC.
+
+  Main ->controller->  service-> dao(spring Jdbc)
+
+Raise the hand, if you have doubt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Model
+  Employee
+  id:number
+  name:String
+  salary:double
+  List<Project>
+
+  Project
+    id:
+    name:
+    desc
+
+
+Emp12
+    id   name      salary
+    1     Jack      5000
+
+Projects12
+  pid    project_name   description                 eid
+  1001   FB             Social Web page             1
+  1002   EMS            Employee management system  1
+
+
+  spring JDBC.
+
+
+
+Main   EmpController    EmpService         EmpDao          DB
+
+                        EmpServiceImpl1    JDBCDao
+                        EmpServiceImpl2    SprngJdbcDao
+                                           HibernatemplateDao
+                                           JpaDao
+
+
+public class EmpController{
+
+   @Autowired
+   private EmpServiceImpl2 empService;
+
+}
