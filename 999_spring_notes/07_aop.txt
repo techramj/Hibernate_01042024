@@ -20,6 +20,9 @@ PointCut: where you have applied
 Advice:
   before
   after
+  around
+  afterThrowing
+  afterReturning
 
 
 Weaving: 
@@ -41,6 +44,8 @@ Weaving:
 LoggingAspect
    before => sysout("before")
    after => sysout("after")
+
+
 
 
 
