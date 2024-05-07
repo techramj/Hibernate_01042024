@@ -1,0 +1,19 @@
+
+
+http://localhost:8081/api/emp   => list of all employees
+http://localhost:8081/api/emp/1  => details of employee with id 1
+
+
+
+http://localhost:8081/api/delete-emp/1  => delete employee with id=1
+http://localhost:8081/api/delete-emp/{id}
+
+http://localhost:8081/api/update-emp/1  => update the employee id=1, data will be send in body
+
+http://localhost:8081/api/add-emp   => add employee , data will be send in body
+
+
+Get
+Post
+Put
+Delete
