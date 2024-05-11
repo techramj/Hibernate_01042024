@@ -1,0 +1,161 @@
+
+spring mvc configuration step:
+
+step 1: create the dynamic web project. select web.xml while creating the project.
+------------------------------------------------------------------------------------------------------------
+step 2: covert the project to maven project.
+       click on project  -> configure -> convert to maven
+       
+------------------------------------------------------------------------------------------------------------
+
+step 3: add the dependencies:
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.easylearning</groupId>
+  <artifactId>0003-springboot-mvc-01</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.3.9.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.3.9.RELEASE</version>
+		</dependency>
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+	</dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+         <source>1.8</source>
+		 <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+
+------------------------------------------------------------------------------------------------------------
+
+step 4: right click on pom.xml file -> maven -> update project
+
+------------------------------------------------------------------------------------------------------------
+
+step 5: configure the front controller i.e dispatcher servlet. Add the below code snippet in web.xml
+
+   <servlet>
+  	<servlet-name>spring</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  
+ 
+  <servlet-mapping>
+  	<servlet-name>spring</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping> 
+
+ ------------------------------------------------------------------------------------------------------------       
+
+step 6: add spring config file
+  name: spring-servlet.xml
+add the file parallel to web.xml
+
+  step 6.a:  add the schema to xml file:
+    
+ <?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	
+</beans>
+
+
+ step 6.b : add the entry of spring file name in web.xml file (modify the web.xml as below)
+  <servlet>
+  		<servlet-name>spring</servlet-name>
+  		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+  </servlet>
+    
+   ------------------------------------------------------------------------------------------------------------------- 
+step 7: Enables the Handler mapping => annotation-based then add the below line in spring config file.
+	<mvc:annotation-driven />
+	
+	if you want to refer others handler mapping. Please go through link: 
+	https://docs.spring.io/spring-framework/docs/3.0.0.M3/reference/html/ch16s04.html#:~:text=Spring's%20handler%20mapping%20mechanism%20has,springframework.
+	
+step 8: add componenet scan from the  package where you want to scan
+        <context:component-scan base-package="com.seed" />
+	
+
+step 9: configure the view resolver in config file:
+     <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	
+step 10: create the controller as below
+
+package com.seed.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class LoginController {
+	
+	
+	@RequestMapping(path = "/login")
+	public String login() {
+		return "loginSuccess";
+	}
+
+}
+
+step 11: create the view folder and add loginSuccess.jsp
+ 	 path=/WEB-INF/views

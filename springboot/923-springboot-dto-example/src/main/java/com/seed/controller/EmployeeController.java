@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.seed.dto.EmployeeDto;
 import com.seed.entity.Employee;
 import com.seed.service.EmployeeService;
 
@@ -28,16 +29,16 @@ public class EmployeeController {
 	
 	
 	@GetMapping("emp")
-	public List<Employee> getEmployees() {
-		 List<Employee> employees = empService.getAllEmployeesDetails();
+	public List<EmployeeDto> getEmployees() {
+		 List<EmployeeDto> employees = empService.getAllEmployeesDetails();
 		 return employees;
 	}
 	
 	
 	@PostMapping("add-emp")
-	public Employee addEmployee(@RequestBody Employee emp) {
-		LOGGER.info("employee to be added name={}, salary={} ",emp.getName(),emp.getSalary());
-		Employee addedEmployee = empService.addEmployee(emp);
+	public EmployeeDto addEmployee(@RequestBody EmployeeDto emp) {
+		LOGGER.info("employee to be added : {}",emp);
+		EmployeeDto addedEmployee = empService.addEmployee(emp);
 		return addedEmployee;
 	}
 	
@@ -48,7 +49,7 @@ public class EmployeeController {
 	}
 	
 	@PutMapping("update-emp/{id}")
-	public Employee updateEmployee(@PathVariable int id, @RequestBody Employee emp) {
+	public EmployeeDto updateEmployee(@PathVariable int id, @RequestBody EmployeeDto emp) {
 		return empService.updateEmployee(id, emp);
 	}
 	
