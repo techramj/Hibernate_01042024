@@ -30,7 +30,21 @@ public class EmployeeController {
 	
 	@GetMapping("emp")
 	public List<EmployeeDto> getEmployees() {
+		
 		 List<EmployeeDto> employees = empService.getAllEmployeesDetails();
+		 LOGGER.info("info message no of employees: {}", employees.size());
+		 LOGGER.debug("debug message no of employees: {}", employees.size());
+		 LOGGER.trace("trace message no of employees: {}", employees.size());
+		 LOGGER.error("errror message no of employees: {}", employees.size(), new RuntimeException());
+		//
+		 
+		 try {
+			 int i = 1/0;
+		 }catch(Exception e) {
+			 //e.printStackTrace();
+			 LOGGER.error("error",e);
+		 }
+		 
 		 return employees;
 	}
 	
